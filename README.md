@@ -7,8 +7,7 @@ The Santa Wish App lets users send Christmas wishes to Santa and enjoy magical a
 - Interactive wish input
 - Magical surprise animations
 - Snowfall animation
-- Santa’s sleigh sound
-- Responsive design
+- Santa’s sleigh sounds
 
 ## Tech Stack
 
