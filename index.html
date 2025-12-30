@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎅 Santa Wish App</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        min-height: 100vh;
+        background: radial-gradient(circle at top, #fff5cc, #ffffff);
+        font-family: "Segoe UI", sans-serif;
+        overflow: hidden;
+      }
+
+      /* Snow */
+      .snow {
+        position: absolute;
+        top: -10px;
+        color: white;
+        animation: fall linear infinite;
+        pointer-events: none;
+        opacity: 0.8;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(110vh);
+        }
+      }
+
+      /* Main Card */
+      .wish-card {
+        background: linear-gradient(to bottom, #ffffff, #fff3c4);
+        border-radius: 25px;
+        padding: 50px 30px;
+        box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+        animation: pop 0.8s ease;
+      }
+
+      @keyframes pop {
+        from {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Permanent Elegant Wish Title */
+      .wish-title {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #b30000;
+        margin-bottom: 25px;
+        padding: 12px 20px;
+        border-radius: 25px;
+        background: linear-gradient(135deg, #fff8e1, #fff);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.35);
+        text-shadow: 0 0 10px rgba(255, 0, 0, 0.25);
+        text-align: center;
+      }
+
+      /* Title */
+      .title {
+        text-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+      }
+
+      /* Inputs */
+      .form-control {
+        border-radius: 15px;
+        padding: 12px;
+        font-size: 1rem;
+      }
+
+      /* Buttons */
+      .btn-santa {
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 12px;
+        transition: 0.3s ease;
+      }
+
+      .btn-santa:hover {
+        transform: scale(1.05);
+      }
+
+      .btn-magic {
+        background: linear-gradient(45deg, #ff0040, #ffcc00);
+        border: none;
+        color: white;
+        box-shadow: 0 0 20px gold;
+        animation: glow 1.5s infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          box-shadow: 0 0 10px gold;
+        }
+        to {
+          box-shadow: 0 0 30px gold;
+        }
+      }
+
+      /* Footer Text */
+      .footer-text {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        margin-top: 15px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Snow Container -->
+    <div id="snowContainer"></div>
+
+    <div
+      class="container d-flex justify-content-center align-items-center vh-100"
+    >
+      <div class="wish-card text-center col-12 col-sm-10 col-md-8 col-lg-5">
+        <!-- Permanent Elegant Wish Title -->
+        <div class="wish-title">🎄 Make your Christmas Wish 🎁</div>
+
+        <h1 class="display-5 mb-3 text-danger title">🎅 Santa Wish App</h1>
+
+        <p class="lead mb-4">Let Santa surprise you with a magical gift!</p>
+
+        <input
+          type="text"
+          id="name"
+          class="form-control mb-3"
+          placeholder="🎄 Your Name"
+        />
+
+        <input
+          type="text"
+          id="wish"
+          class="form-control mb-4"
+          placeholder="🎁 Your Christmas Wish"
+        />
+
+        <!-- Send Wish -->
+        <button id="submitBtn" class="btn btn-success btn-santa w-100 mb-3">
+          🎁 Send Wish to Santa
+        </button>
+
+        <!-- Surprise -->
+        <button id="surpriseBtn" class="btn btn-magic btn-santa w-100">
+          🎄 See Santa’s Surprise
+        </button>
+
+        <div class="footer-text">✨ Santa is listening…</div>
+      </div>
+    </div>
+
+    <script>
+      const submitBtn = document.getElementById("submitBtn");
+      const surpriseBtn = document.getElementById("surpriseBtn");
+
+      function saveWish() {
+        const name = document.getElementById("name").value.trim();
+        const wish = document.getElementById("wish").value.trim();
+
+        if (!name || !wish) {
+          alert("🎅 Please enter a wish for Santa!");
+          return false;
+        }
+
+        localStorage.setItem("santaName", name);
+        localStorage.setItem("santaWish", wish);
+        return true;
+      }
+
+      submitBtn.addEventListener("click", () => {
+        if (saveWish()) {
+          window.location.href = "wish.html";
+        }
+      });
+
+      surpriseBtn.addEventListener("click", () => {
+        if (saveWish()) {
+          window.location.href = "santa-surprise.html";
+        }
+      });
+
+      /* Snow effect */
+      setInterval(() => {
+        const snow = document.createElement("div");
+        snow.className = "snow";
+        snow.innerHTML = "❄";
+        snow.style.left = Math.random() * window.innerWidth + "px";
+        snow.style.animationDuration = 4 + Math.random() * 6 + "s";
+        document.body.appendChild(snow);
+        setTimeout(() => snow.remove(), 10000);
+      }, 200);
+    </script>
+  </body>
+</html>
