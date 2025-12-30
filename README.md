@@ -32,9 +32,9 @@ https://69537bd7916017695ebe33eb--splendid-selkie-6df31a.netlify.app/
 
 ## Screenshots
 
-![Home Page](screenshots/home.png)
-![Santa Wish Page](screenshots/wish.png)
-![Surprise Page](screenshots/surprise.png)
+![Home Page](home.png)
+![Santa Wish Page](wish.png)
+![Surprise Page](surprise.png)
 
 ## Notes
 
